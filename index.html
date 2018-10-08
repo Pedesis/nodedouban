@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main1" style="width: 600px;height:500px;"></div>
+    <div id="main2" style="width: 1000px;height:400px;"></div>
+</body>
+<script type="text/javascript">
+var log=function(){
+    console.log.apply(console,arguments);
+}
+</script>
+<script src="js/korea.js"></script>
+<script src="js/dataanalysis.js"></script>
+<script>
+    //柱状图
+   // 基于准备好的dom，初始化echarts实例
+   var myChart1 = echarts.init(document.getElementById('main1'));
+
+// 指定图表的配置项和数据
+var option1 = {
+    title: {
+        text: '豆瓣电视剧评分'
+    },
+    tooltip: {},
+    legend: {
+        data:['数量']
+    },
+    xAxis: {
+        data:  ["小于6分","6分","7分","8分","9分"]
+    },
+    yAxis: {},
+    series: [{
+        name: '数量',
+        type: 'bar',
+        data: scoreDataAnlysis()
+    }]
+};
+
+// 使用刚指定的配置项和数据显示图表。
+myChart1.setOption(option1);
+//折线图
+var myChart2 = echarts.init(document.getElementById('main2'));
+var option2 = {
+    title: {
+        text: '豆瓣各年份电视剧数量'
+    },
+    xAxis: {
+        type: 'category',
+        data: ["2018年","2017年","2016年","2015年","2014年","2014年以下"]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: timeDataAnlysis(),
+        type: 'line'
+    }]
+};
+myChart2.setOption(option2);
+</script>
+</html>
